@@ -1,0 +1,29 @@
+{
+	"java.jdt.ls.vmargs": "-javaagent:/Users/xxxx/devtools/lombok.jar -Xbootclasspath/a:/Users/xxxx/devtools/lombok.jar",
+	"java.errors.incompleteClasspath.severity": "ignore",
+	"snippets.ultisnips.directories": [
+		"UltiSnips",
+		"~/devtools/vim-terraform-snippets/terraform"
+	],
+	"languageserver": {
+		"terraform": {
+			"command": "terraform-lsp",
+			"filetypes": [
+				"tf"
+			],
+			"initializationOptions": {}
+		},
+		"golang": {
+			"command": "gopls",
+			"rootPatterns": [
+				"go.mod",
+				".vim/",
+				".git/",
+				".hg/"
+			],
+			"filetypes": [
+				"go"
+			]
+		}
+	}
+}
