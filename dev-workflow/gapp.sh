@@ -12,7 +12,7 @@
 # 			$ gapp the_file commit_message 
 # 			$ gapp th_directory commit_message
 
-set +x
+set -x
 case "$1" in 
 	"") echo "Usage: ${0##*/} <filename>"; exit $E_PARAM;;
 	-*) FILENAME=./$1;;
