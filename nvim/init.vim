@@ -17,6 +17,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 Plug 'fatih/vim-go'
 call plug#end()
 
+let g:coc_global_extensions = ['coc-java', 'coc-json', 'coc-snippets', 'coc-pairs']
+
 au BufNewFile,BufRead Jenkinsfile* setf groovy
 
 let g:deoplete#enable_at_startup = 1
@@ -84,6 +86,9 @@ if has('statusline')
 		set statusline+=\ \|\  
 		set statusline+=file::
 		set statusline+=\ %f
+		"set statusline+=\ \|
+		"set statusline+=coc-status::
+		"set statusline+=%{coc#status()}
 endif
 
 function! GetCurrentWorkingDirectory()
@@ -231,6 +236,13 @@ let g:fugitive_gitlab_domains = ['']
 let g:gitlab_api_keys = {'gitlab.com': ''}
 
 " ----------coc.vim configuration----------
+
+"Multiple cursors
+nmap <silent> <C-c> <Plug>(coc-cursors-position)
+nmap <silent> <C-d> <Plug>(coc-cursors-word)
+xmap <silent> <C-d> <Plug>(coc-cursors-range)
+" use normal command like `<leader>xi(`
+nmap <leader>x  <Plug>(coc-cursors-operator)
 
 "Navigate the completion list
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
