@@ -17,12 +17,11 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 Plug 'fatih/vim-go'
 call plug#end()
 
+au BufNewFile,BufRead Jenkinsfile* setf groovy
 
 let g:deoplete#enable_at_startup = 1
 
 set rtp+=~/.fzf
-
-colorscheme blue
 
 colorscheme gruvbox
 
@@ -59,6 +58,10 @@ set mouse=a
 set hlsearch
 
 set matchpairs+=<:>
+
+set ignorecase
+
+set list
 
 set ruler
 set scrolloff=7

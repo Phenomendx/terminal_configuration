@@ -25,6 +25,6 @@ git add $FILENAME
 
 git commit $FILENAME -m"$2"
 
-git push $FILENAME
+git push 
 
 echo "Done add commit and push"
