@@ -8,8 +8,8 @@
 #				 3. GIT PUSH
 #
 # HOW TO USE ?
-# 			$ gap the_file commit_message 
-#				$ gap th_directory commit_message
+# 			$ gapp the_file commit_message 
+#				$ gapp th_directory commit_message
 
 case "$1" in 
 	"") echo "Usage: ${0##*/} <filename>"; exit $E_PARAM;;
