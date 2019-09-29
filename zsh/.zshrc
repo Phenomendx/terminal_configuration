@@ -94,15 +94,22 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+up() {
+	export PATH=$PATH:$1
+}
+
+DEV_WORKFLOW=~/dot-files-and-probably-more/dev-workflow
+up $DEV_WORKFLOW
+
 export GOPATH=$HOME/go
 export GOBIN=~/devtools/vim-go-bin
-export PATH=$PATH:$GOBIN
-
-# Language Service Protocol implementations
-export PATH=$PATH:~/devtools/terraform-lsp
+up $GOBIN
 
 export M2_CLASSPATH=~/.m2/repository
 #export CLASSPATH=~/.m2/repository/org/mockito/mockito-core/2.23.4/mockito-core-2.23.4.jar
+
+# Language Service Protocol implementations
+up ~/devtools/terraform-lsp
 
 aws-login() {
   ACCOUNTS=""
