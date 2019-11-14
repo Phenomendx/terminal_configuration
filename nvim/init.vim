@@ -15,7 +15,13 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 Plug 'fatih/vim-go'
+"Plug 'mhinz/vim-grepper'
+Plug 'stefandtw/quickfix-reflector.vim'
+Plug 'jremmen/vim-ripgrep'
 call plug#end()
+
+let g:qf_modifiable = 1
+let g:qf_write_changes = 1
 
 let g:coc_global_extensions = ['coc-java', 'coc-json', 'coc-snippets', 'coc-pairs']
 
@@ -51,7 +57,7 @@ set number
 
 set autoindent
 
-set tabstop=2
+set tabstop=4
 
 set shiftwidth=2
 
@@ -81,12 +87,12 @@ if has('statusline')
 		"Show constantly current working directory
 		set laststatus=2
 		set statusline=
-		set statusline=cwd::
+		set statusline=cwd:
 		set statusline+=%{GetCurrentWorkingDirectory()}
 		set statusline+=\ \|\  
-		set statusline+=file::
+		set statusline+=file:
 		set statusline+=\ %f
-		"set statusline+=\ \|
+		set statusline+=\ \|
 		"set statusline+=coc-status::
 		"set statusline+=%{coc#status()}
 endif
@@ -108,6 +114,9 @@ endif
 " ----------------------------------------------------------------------------
 " Key Mappings:Customized keys
 " ----------------------------------------------------------------------------
+"Quick window close
+nnoremap qw :q <CR>
+
 "Set file's current directory as current working directory
 nnoremap <leader>cd :cd %:p:h<cr>
 
@@ -228,11 +237,11 @@ let g:limelight_priority = -1
 
 "Ultisnip
 let g:UltiSnipsExpandTrigger="<tab>"  " use <Tab> trigger autocompletion
-let g:UltiSnipsJumpForwardTrigger="<c-f>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+"let g:UltiSnipsJumpForwardTrigger="<c-f>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 "Fugitive-gitlab
-let g:fugitive_gitlab_domains = ['']
+let g:fugitive_gitlab_domains = []
 let g:gitlab_api_keys = {'gitlab.com': ''}
 
 " ----------coc.vim configuration----------
@@ -261,6 +270,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
+
+nmap <leader>rf <Plug>(coc-refactor)
 
 " Remap for format selected region
 xmap <leader>f  <Plug>(coc-format-selected)
@@ -305,23 +316,70 @@ let g:coc_snippet_prev = '<c-b>'
 "NERDTree
 nnoremap <c-t> :NERDTreeToggle<CR>
 let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinSize = 50
 nnoremap <silent> <Leader>r :NERDTreeFind<CR>
 
 "Fuzzy Finder
 map ; :Files<CR>
+noremap ' :RgWithColor<CR> 
 nnoremap fb :Buffers<CR>
-nnoremap <c-f>l :Lines<CR>
-nnoremap <c-f>t: Tags<CR>
-nnoremap <c-f>w: Windows<CR>
-nnoremap <c-f>a :Ag<CR>
+nnoremap fh :History:<CR>
+nnoremap fl :Lines<CR>
+nnoremap fbl :Lines<CR>
+nnoremap ft: Tags<CR>
+nnoremap fw: Windows<CR>
 
 let g:fzf_layout = { 'down': '~40%' }
 " Enable per-command history.
 " CTRL-N and CTRL-P will be automatically bound to next-history and
 " previous-history instead of down and up. If you don't like the change,
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
-"let g:fzf_history_dir = '~/.local/share/fzf-history'
+let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
+"let g:fzf_files_options = '--preview "pygmentize {}" --color light'
 
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --no-ignore: Do not respect .gitignore, etc...
+" --hidden: Search hidden files and folders
+" --follow: Follow symlinks
+" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+" --color: Search color options
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+" Example: :RgWithFileRegExpFilter 'search for something' -g '*.java'
+command! -bang -nargs=* RgWithFileRegExpFilter call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
+
+command! -bang -nargs=* RgWithPreview
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color-never --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%', '?'),
+  \   <bang>0)
+
+command! -bang -nargs=* RgWithColor
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --colors "path:fg:190,220,255" --colors "line:fg:128,128,128" --smart-case '.shellescape(<q-args>), 1, { 'options': '--color hl:123,hl+:222' }, 0)
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" Vim grepper
+"let g:grepper={}
+"let g:grepper.tools=["rg"]
