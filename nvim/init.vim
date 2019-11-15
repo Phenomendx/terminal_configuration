@@ -2,7 +2,9 @@ call plug#begin()
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
+Plug 'junegunn/seoul256.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -18,10 +20,9 @@ Plug 'fatih/vim-go'
 "Plug 'mhinz/vim-grepper'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'jremmen/vim-ripgrep'
+Plug 'janko-m/vim-test'
 call plug#end()
 
-let g:qf_modifiable = 1
-let g:qf_write_changes = 1
 
 let g:coc_global_extensions = ['coc-java', 'coc-json', 'coc-snippets', 'coc-pairs']
 
@@ -31,7 +32,12 @@ let g:deoplete#enable_at_startup = 1
 
 set rtp+=~/.fzf
 
-colorscheme gruvbox
+"colorscheme gruvbox
+colorscheme seoul256
+" seoul256 (dark):
+"   Range:   233 (darkest) ~ 239 (lightest)
+"   Default: 237
+let g:seoul256_background = 233
 
 "Interfer with system copy-paste buffers
 "Note that X11 and Windows systems has different typy of buffers 
@@ -241,7 +247,7 @@ let g:UltiSnipsExpandTrigger="<tab>"  " use <Tab> trigger autocompletion
 "let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 "Fugitive-gitlab
-let g:fugitive_gitlab_domains = []
+let g:fugitive_gitlab_domains = ['https://']
 let g:gitlab_api_keys = {'gitlab.com': ''}
 
 " ----------coc.vim configuration----------
@@ -312,6 +318,18 @@ let g:coc_snippet_next = '<c-f>'
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-b>'
 "----------------coc-snippets--------------
+
+"----------------quickfix-reflector--------------
+let g:qf_modifiable = 1
+let g:qf_write_changes = 1
+"----------------quickfix-reflector--------------
+
+let test#strategy = {
+  \ 'nearest': 'neovim',
+  \ 'file':    'dispatch',
+  \ 'suite':   'basic',
+\}
+let test#neovim#term_position = "topleft"
 
 "NERDTree
 nnoremap <c-t> :NERDTreeToggle<CR>
