@@ -27,12 +27,16 @@ _Java_
 	Within Neovim :CocInstall coc-yank
 	Within Neovim :CocInstall coc-java
 	
-	As an alternative to the aboves define this variable with the desired coc extenstion to be installed in your init.vim
-	`let g:coc_global_extensions = ['coc-java', 'coc-json', 'coc-snippets', 'coc-pairs', 'coc-yank']`
+As an alternative to the aboves define this variable with the desired coc extenstion to be installed in your init.vim
+
+```bash
+let g:coc_global_extensions = ['coc-java', 'coc-json', 'coc-snippets', 'coc-pairs', 'coc-yank']
+```
 	
-### NERDTree with Dev icons
-	[vim-nerdtree-syntax-highlit](https://github.com/tiagofumo/vim-nerdtree-syntax-highlight)
-	[vim-devicons](https://github.com/ryanoasis/vim-devicons)
-	
-	Install a nerd compatible font(https://github.com/ryanoasis/nerd-fonts#font-installation)
-		
+#### NERDTree with Dev icons
+
+[vim-nerdtree-syntax-highlit](https://github.com/tiagofumo/vim-nerdtree-syntax-highlight)
+
+[vim-devicons](https://github.com/ryanoasis/vim-devicons)
+
+Install a Nerd compatible font(https://github.com/ryanoasis/nerd-fonts#font-installation)
