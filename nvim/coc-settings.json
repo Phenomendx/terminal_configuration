@@ -25,5 +25,9 @@
 				"go"
 			]
 		}
-	}
+	},
+	"yank.highlight.enable": true,
+	"yank.highlight.duration": 200,
+	"yank.enableCompletion": true,
+	"yank.limit": 8
 }
