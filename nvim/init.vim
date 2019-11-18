@@ -25,6 +25,8 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'janko-m/vim-test'
 call plug#end()
 
+set encoding=UTF-8
+
 let g:coc_global_extensions = ['coc-java', 'coc-json', 'coc-snippets', 'coc-pairs', 'coc-yank']
 
 au BufNewFile,BufRead Jenkinsfile* setf groovy
@@ -91,10 +93,12 @@ if has('statusline')
 		set statusline=
 		set statusline=cwd:
 		set statusline+=%{GetCurrentWorkingDirectory()}
-		set statusline+=\ \|\  
+		set statusline+=\ \|\
 		set statusline+=file:
-		set statusline+=\ %f
+		set statusline+=\%f
 		set statusline+=\ \|
+		set statusline+=branch:
+		set statusline+=%{FugitiveStatusline()}
 		"set statusline+=coc-status::
 		"set statusline+=%{coc#status()}
 endif
@@ -354,6 +358,11 @@ let test#strategy = {
   \ 'suite':   'basic',
 \}
 let test#neovim#term_position = "topleft"
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
 "----------------vim-test--------------
 
 "----------------coc-yank--------------
@@ -366,6 +375,12 @@ let g:NERDTreeWinPos = "left"
 let g:NERDTreeWinSize = 50
 nnoremap <silent> <Leader>r :NERDTreeFind<CR>
 "------------------NERDTree------------
+
+"------------------NERDTreeHighlight------------
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+let g:NERDTreeLimitedSyntax = 1
+"------------------NERDTreeHighlight------------
 
 "-----------------Fuzzy Finder-------------
 map ; :Files<CR>
