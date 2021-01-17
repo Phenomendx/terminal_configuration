@@ -1,14 +1,19 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+#
+#/usr/local/Cellar/php/7.4.10/bin
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/xxxx/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
+
+#export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
+export FZF_DEFAULT_COMMAND='find . -type f'
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="dst"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -68,82 +73,43 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-
-plugins=(
-docker
-docker-compose
-git
-copyfile
-copydir
-copybuffer
-mvn
-aws
-terraform
-themes
-jump
-spring
-zsh-autosuggestions
-kubectl
-helm
-httpie
-minikube
-golang
+plugins=(git
+  zsh-autosuggestions
+  copyfile
+  copydir
+  copybuffer
+  sdk
+  mvn
+  aws
+  pyenv
+  docker
+  docker-compose
+  themes
 )
 
+#KEYTIMEOUT=1
+
 source $ZSH/oh-my-zsh.sh
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
+export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
+export TERM=xterm-256color
+
+bindkey '^ ' autosuggest-toggle
+bindkey '^M' autosuggest-execute # Enter
+bindkey '^K' up-line-or-beginning-search 
+bindkey '^J' down-line-or-beginning-search
+
+bindkey '\es' .where-is
+
+bindkey '^H' backward-word
+bindkey '^L' forward-word
+bindkey '˙' backward-delete-word # option h 
+bindkey '¬' delete-word # option l 
+
+source $HOME/.zle_widgets/custom_widgets
 
 # User configuration
-
-up() {
-	export PATH=$PATH:$1
-}
-
-DEV_WORKFLOW=~/dot-files-and-probably-more/dev-workflow
-up $DEV_WORKFLOW
-
-export GOPATH=$HOME/go
-export GOBIN=~/devtools/vim-go-bin
-up $GOBIN
-
-export M2_CLASSPATH=~/.m2/repository
-#export CLASSPATH=~/.m2/repository/org/mockito/mockito-core/2.23.4/mockito-core-2.23.4.jar
-
-# Language Service Protocol implementations
-up ~/devtools/terraform-lsp
-
-aws-login() {
-  ACCOUNTS=""
-  ACCOUNT_ROLES=""
-  ROLES=$(saml2aws list-roles --skip-prompt)
-  ACCOUNT_FOUND=false
-  while IFS= read -r line
-  do
-    if [[ "$ACCOUNT_FOUND" == "true" ]]
-    then
-      ACCOUNT_ROLES="$ACCOUNT_ROLES$line\n"
-      ACCOUNT_FOUND=false
-    fi
-    if [ -z $BASH ];
-    then
-      if [[ "$line" =~ "^Account: ([a-z\-]+) .*$" ]];
-      then
-        ACCOUNTS="$ACCOUNTS$match\n"
-        ACCOUNT_FOUND=true
-      fi
-    else
-      REG="^Account: ([a-z\-]+) .*$"
-      if [[ "$line" =~ $REG ]];
-      then
-        ACCOUNTS="$ACCOUNTS${BASH_REMATCH[1]}\n"
-        ACCOUNT_FOUND=true
-      fi
-    fi
-  done < <(printf '%s\n' "$ROLES")
-  export AWS_PROFILE=$(printf $ACCOUNTS | sed '/^$/d' | fzf --reverse --border --height 10%)
-  ROLE=$(echo $ACCOUNT_ROLES | sed -n $(printf $ACCOUNTS | grep -Fn "$AWS_PROFILE" | cut -d : -f 1)p)
-  saml2aws login --skip-prompt --profile=$AWS_PROFILE --force --session-duration=14400 --role=$ROLE &> /dev/null
-  echo "Using $AWS_PROFILE"
-}
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -170,18 +136,13 @@ aws-login() {
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias er="nvim ~/.zshrc"
 
-export PYENV_ROOT="$HOME/.pyenv" 
-export KUBECONFIG=~/.kube/config
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-autoload -Uz compinit && compinit -i
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/xxxxx/.sdkman"
-[[ -s "/Users/xxxxx/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/xxxxx/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="~/.sdkman"
+[[ -s "~/.sdkman/bin/sdkman-init.sh" ]] && source "~/.sdkman/bin/sdkman-init.sh"
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

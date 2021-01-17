@@ -1,0 +1,62 @@
+#!/bin/zsh
+
+function tmux_send_key_to_pane_0 {
+  buffer_content=$BUFFER
+  BUFFER="tmux send-key -t 0 "
+  BUFFER+="$buffer_content enter"
+  zle accept-line
+}
+zle -N tmux_send_key_to_pane_0
+bindkey '^s' tmux_send_key_to_pane_0
+
+
+# Tmux widgets, available only in tmux sessions
+
+function new_tmux_vertical {
+  BUFFER+=""
+  BUFFER="tmux split-window -h"
+  zle accept-line
+}
+zle -N new_tmux_vertical
+bindkey '^N'  new_tmux_vertical
+
+
+function new_tmux_horizontal {
+  BUFFER+=""
+  BUFFER="tmux split-window"
+  zle accept-line
+}
+zle -N new_tmux_horizontal
+bindkey '^V'  new_tmux_horizontal
+
+
+function choose_tree {
+  BUFFER+=""
+  BUFFER="tmux choose-tree"
+  zle accept-line
+}
+zle -N choose_tree
+bindkey '^ ^M'  choose_tree
+
+function kill_pane {
+  BUFFER+=""
+  BUFFER="tmux kill-pane"
+  zle accept-line
+}
+zle -N kill_pane
+bindkey '^X'  kill_pane
+
+
+function display_panes {
+  BUFFER+=""
+  BUFFER="tmux display-panes"
+  zle accept-line
+}
+zle -N display_panes
+bindkey '\ew'  display_panes
+
+
+
+
+
+

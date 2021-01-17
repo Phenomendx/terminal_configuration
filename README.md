@@ -1,1 +1,3 @@
-# do12t-files-and-probably-more
+# Terminal Configurations
+
+Bare minimum configurations for terminal
