@@ -64,15 +64,13 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 
 "Increases/Decrease window width/height
-"nnoremap <S-Left> 5<c-w><
-"nnoremap <S-Right> 5<c-w>>
-"nnoremap <S-Up> 3<c-w>+
-"nnoremap <S-Down> 3<c-w>-
-                            
-"nnoremap <Tab> 5<c-w><
-nnoremap <Space> 5<c-w>>
+nnoremap <Space>v :vsplit<CR>
+nnoremap <Space>h :split<CR>
+nnoremap <Space> 4<c-w>>
+nnoremap <Tab> 4<c-w><
 nnoremap <S-Up> 3<c-w>+
 nnoremap <S-Down> 3<c-w>-
+nnoremap <Space>f <c-w>o
 
 " Scroll with option k/j
 nnoremap ∆ 3<c-e>
