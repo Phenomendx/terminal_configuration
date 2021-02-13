@@ -32,7 +32,12 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'dhruvasagar/vim-open-url'
 Plug 'reedes/vim-pencil'
 Plug 'frazrepo/vim-rainbow'
+Plug 'szw/vim-g'
+Plug 'git@github.com:CrispyDrone/vim-tasks.git'
+Plug 'dhruvasagar/vim-table-mode'
 call plug#end()
+
+let g:coc_global_extensions = ['coc-json']
 
 source $HOME/.config/nvim/config/basic_mappings.vimrc
 source $HOME/.config/nvim/config/basic_options.vimrc
