@@ -29,3 +29,5 @@ if has('persistent_undo')
   set undoreload=10000        
   set undodir=~/.undodir/
 endif
+set foldmethod=indent
+set foldlevel=1
