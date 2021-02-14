@@ -63,6 +63,13 @@ nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 
+"Moving windows
+nnoremap <Tab>h <C-W>H
+nnoremap <Tab>l <C-W>L
+nnoremap <Tab>j <C-W>J
+nnoremap <Tab>k <C-W>K
+nnoremap <Tab>t <C-W>T
+
 "Increases/Decrease window width/height
 nnoremap <Space>v :vsplit<CR>
 nnoremap <Space>h :split<CR>
