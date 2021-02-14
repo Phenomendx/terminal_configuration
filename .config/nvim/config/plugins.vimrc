@@ -75,6 +75,15 @@ noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 "================================================================================================================
 
 "================================================================================================================
+
+"Search based of the current file location
+nnoremap <silent>sf :<C-u>Defx -listed -resume
+      \ -columns=indent:mark:icon:icons:filename:git:size
+      \ -buffer-name=tab`tabpagenr()`
+      \ `expand('%:p:h')` -search=`expand('%:p')`<CR>
+nnoremap <silent>fi :<C-u>Defx -new `expand('%:p:h')` -search=`expand('%:p')`<CR>
+
+"Search based on project working directory
 nnoremap <silent><leader>e :Defx -toggle -focus=0 -search=`expand ('%:p')` `getcwd()` <CR>
 
 autocmd BufWritePost * call defx#redraw()
