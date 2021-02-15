@@ -35,24 +35,20 @@ Plug 'frazrepo/vim-rainbow'
 Plug 'szw/vim-g'
 Plug 'git@github.com:CrispyDrone/vim-tasks.git'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'honza/vim-snippets'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
-let g:coc_global_extensions = ['coc-json']
+let g:coc_global_extensions = ['coc-json', 'coc-snippets', 'coc-pairs','coc-metals', 'coc-vimlsp']
 
 source $HOME/.config/nvim/config/basic_mappings.vimrc
 source $HOME/.config/nvim/config/basic_options.vimrc
 source $HOME/.config/nvim/config/plugins.vimrc
 source $HOME/.config/nvim/config/terminall.vimrc
 source $HOME/.config/nvim/config/scala.vimrc
+source $HOME/.config/nvim/config/coc_snippets.vimrc
+source $HOME/.config/nvim/config/coc_yank.vimrc
 
 au BufNewFile,BufRead Jenkinsfile* setf groovy
 au BufNewFile,BufRead Jenkinsenki* setf groovy
 au FocusLost * :wa
-
-"com -nargs=* Stest call tmxsend#tmxeasy#Send("test", <f-args>)
-"com -nargs=* Scompile call tmxsend#tmxeasy#Send("compile", <f-args>)
-"com -nargs=* StestOnly call tmxsend#tmxeasy#Send("testOnly", <f-args>)
-"com -nargs=* Sreload call tmxsend#tmxeasy#Send("reload", <f-args>)
-"com -nargs=* Scommand call tmxsend#tmxeasy#Send(<f-args>)
-com -nargs=* Ttree call tmxsend#tmxeasy#Tree()
-

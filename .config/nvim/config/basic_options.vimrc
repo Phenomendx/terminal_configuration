@@ -13,7 +13,7 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set mouse=a
-set hlsearch
+set nohlsearch
 set matchpairs+=<:>
 set ignorecase
 set list

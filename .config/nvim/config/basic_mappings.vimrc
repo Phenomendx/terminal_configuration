@@ -93,7 +93,3 @@ inoremap <Leader>f <Esc>gg=G
 
 "Only current window
 nnoremap<leader>o :only<CR>
-
-"Shows tmux tree
-nnoremap \' :Ttree <CR><CR>
-

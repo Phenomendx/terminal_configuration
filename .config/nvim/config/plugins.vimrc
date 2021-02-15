@@ -3,7 +3,6 @@
 let g:rainbow_active = 1
 "================================================================================================================
 
-
 "================================================================================================================
 let g:vim_markdown_folding_disabled = 1
 "================================================================================================================
@@ -13,6 +12,7 @@ let g:fugitive_gitlab_domains = ['']
 let g:gitlab_api_keys = {'gitlab.com': ''}
 "================================================================================================================
 
+" execute tests
 "================================================================================================================
 let test#strategy = {
   \ 'nearest': 'neovim',
@@ -49,9 +49,8 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:fzf_buffers_jump = 1
 "================================================================================================================
 
+" easy motion - search and navigate
 "================================================================================================================
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
 
 map <Leader>L <Plug>(easymotion-bd-jk)
 nmap <Leader>L <Plug>(easymotion-overwin-line)
@@ -74,6 +73,8 @@ endfunction
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 "================================================================================================================
 
+
+" file explorer
 "================================================================================================================
 
 "Search based of the current file location
@@ -174,21 +175,9 @@ let g:neoformat_scala_scalafmt = {
       \ 'args': ['--stdin'],
       \ 'stdin': 1,
       \ }
-
 autocmd BufWritePre *.{scala,sbt} Neoformat
 "================================================================================================================
 
-"================================================================================================================
-let g:multi_cursor_use_default_mapping=0
-let g:VM_mouse_mappings = 1
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
-"================================================================================================================
-
-nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
+"vim-table-mode
+let g:table_mode_corner_corner='+'
+let g:table_mode_header_fillchar='='
