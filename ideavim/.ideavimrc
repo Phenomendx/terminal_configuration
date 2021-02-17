@@ -80,6 +80,7 @@ nmap >, :action MoveElementRight<CR>
 
 " view
 nmap zz <Action>(ToggleDistractionFreeMode)
+nmap xx <Action>(Run)
 
 " tab management
 nmap <Tab> <Action>(MoveEditorToOppositeTabGroup)
