@@ -9,6 +9,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/argtextobj.vim'
+Plug 'tommcdo/vim-exchange'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
