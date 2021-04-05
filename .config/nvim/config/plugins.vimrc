@@ -78,29 +78,21 @@ noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 "================================================================================================================
 
 "Search based of the current file location
-nnoremap <silent>sf :<C-u>Defx -listed -resume
-      \ -columns=indent:mark:icon:icons:filename:git:size
-      \ -buffer-name=tab`tabpagenr()`
-      \ `expand('%:p:h')` -search=`expand('%:p')`<CR>
 nnoremap <silent>fi :<C-u>Defx -new `expand('%:p:h')` -search=`expand('%:p')`<CR>
 
 "Search based on project working directory
-nnoremap <silent><leader>e :Defx -toggle -focus=0 -search=`expand ('%:p')` `getcwd()` <CR>
+nnoremap <silent><leader>e :Defx -search=`expand ('%:p')` `getcwd()` <CR>
 
 autocmd BufWritePost * call defx#redraw()
 
 autocmd FileType defx call s:defx_my_settings()
 
 function! s:defx_my_settings() abort
-  nnoremap <silent><buffer><expr> > defx#do_action('resize',
-        \ defx#get_context().winwidth + 30)
-  nnoremap <silent><buffer><expr> < defx#do_action('resize',
-        \ defx#get_context().winwidth - 10)
 
   nnoremap <silent><buffer><expr> <CR> defx#do_action('drop')
 
-  nnoremap <silent><buffer><expr> <CR>
-        \ defx#do_action('open')
+  nnoremap <silent><buffer><expr> P
+	  \ defx#do_action('preview')
   nnoremap <silent><buffer><expr> c
         \ defx#do_action('copy')
   nnoremap <silent><buffer><expr> m
@@ -111,10 +103,10 @@ function! s:defx_my_settings() abort
         \ defx#do_action('open')
   nnoremap <silent><buffer><expr> E
         \ defx#do_action('open', ':edit')
-  nnoremap <silent><buffer><expr> P
-        \ defx#do_action('open', 'pedit')
   nnoremap <silent><buffer><expr> o
-        \ defx#do_action('open_tree', 'toggle')
+        \ defx#do_action('open_tree')
+  nnoremap <silent><buffer><expr> O
+        \ defx#do_action('open_tree', 'recursive')
   nnoremap <silent><buffer><expr> K
         \ defx#do_action('new_directory')
   nnoremap <silent><buffer><expr> N
