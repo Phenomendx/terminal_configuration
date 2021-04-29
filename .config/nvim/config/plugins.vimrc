@@ -37,6 +37,8 @@ nnoremap ft :Tags<CR>
 nnoremap fw :Windows<CR>
 nnoremap fm :Marks<CR>
 
+nnoremap fc :Files ~/.config/nvim/config<CR>
+
 let g:fzf_layout = { 'up': '~70%' }
 
 let g:fzf_action = {
@@ -88,6 +90,9 @@ autocmd BufWritePost * call defx#redraw()
 autocmd FileType defx call s:defx_my_settings()
 
 function! s:defx_my_settings() abort
+
+	nnoremap <silent><buffer><expr> <2-LeftMouse> defx#do_action('open_tree')
+
 
   nnoremap <silent><buffer><expr> <CR> defx#do_action('drop')
 
@@ -159,6 +164,11 @@ call defx#custom#column('mark', {
       \ 'readonly_icon': '✗',
       \ 'selected_icon': '✓',
       \ })
+call defx#custom#column('filename', {
+            \ 'min_width': 60,
+            \ 'max_width_percent': 100,
+            \ })
+
 "================================================================================================================
 
 "================================================================================================================
