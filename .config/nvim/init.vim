@@ -1,14 +1,13 @@
 call plug#begin()
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
-Plug 'sbdchd/neoformat'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-rhubarb'
 Plug 'vim-scripts/argtextobj.vim'
 Plug 'tommcdo/vim-exchange'
 Plug 'junegunn/goyo.vim'
@@ -41,9 +40,13 @@ Plug 'git@github.com:CrispyDrone/vim-tasks.git'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'honza/vim-snippets'
 Plug 'airblade/vim-gitgutter'
+Plug 'dracula/vim'
+Plug 'fatih/vim-go'
+Plug 'azabiong/vim-highlighter'
+Plug 'sainnhe/edge'
 call plug#end()
 
-let g:coc_global_extensions = ['coc-json', 'coc-snippets', 'coc-pairs','coc-metals', 'coc-vimlsp']
+au CursorHold,CursorHoldI * checktime
 
 source $HOME/.config/nvim/config/basic_mappings.vimrc
 source $HOME/.config/nvim/config/basic_options.vimrc
@@ -51,8 +54,18 @@ source $HOME/.config/nvim/config/plugins.vimrc
 source $HOME/.config/nvim/config/terminall.vimrc
 source $HOME/.config/nvim/config/scala.vimrc
 source $HOME/.config/nvim/config/coc_snippets.vimrc
-source $HOME/.config/nvim/config/coc_yank.vimrc
+" source $HOME/.config/nvim/config/coc_yank.vimrc
 
 au BufNewFile,BufRead Jenkinsfile* setf groovy
 au BufNewFile,BufRead Jenkinsenki* setf groovy
 au FocusLost * :wa
+
+let HiSet   = 'f<CR>'           " normal, visual
+let HiErase = 'f<BS>'           " normal, visual
+let HiClear = 'f<C-L>'          " normal
+let HiFind  = 'f<Tab>'          " normal, visual
+let HiFindTool = 'rg --color=never --no-heading --column --smart-case'
+nn <silent>-  :<C-U> Hi/next<CR>
+nn <silent>_  :<C-U> Hi/previous<CR>
+nn f<Left>    :<C-U> Hi/older<CR>
+nn f<Right>   :<C-U> Hi/newer<CR>

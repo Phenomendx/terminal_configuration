@@ -30,6 +30,7 @@ nmap <silent> <leader>g :TestVisit<CR>
 " fuzzy finder
 "================================================================================================================
 nnoremap ; :Files<CR>
+nnoremap ' :Rg<CR>
 nnoremap fb :Buffers<CR>
 nnoremap fh :History:<CR>
 nnoremap fl :Lines<CR>
@@ -171,13 +172,6 @@ call defx#custom#column('filename', {
 
 "================================================================================================================
 
-"================================================================================================================
-let g:neoformat_scala_scalafmt = {
-      \ 'exe': 'scalafmt-native',
-      \ 'args': ['--stdin'],
-      \ 'stdin': 1,
-      \ }
-autocmd BufWritePre *.{scala,sbt} Neoformat
 "================================================================================================================
 
 "vim-table-mode

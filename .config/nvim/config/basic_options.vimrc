@@ -1,9 +1,11 @@
-colorscheme OceanicNext
+" colorscheme OceanicNext
+colorscheme edge
+
+syntax enable
 syntax on
 filetype on
 set rtp+=~/.fzf
 set autowriteall
-set termguicolors
 set clipboard=unnamed,unnamedplus
 set noswapfile
 set number
@@ -29,5 +31,5 @@ if has('persistent_undo')
   set undoreload=10000        
   set undodir=~/.undodir/
 endif
-set foldmethod=indent
-set foldlevel=1
+"set foldmethod=indent
+"set foldlevel=1

@@ -9,7 +9,7 @@ noremap <leader>p "*p
 "CLIPBOARD BUFFER
 noremap <leader>Y "+y
 noremap <leader>P "+p
-          
+
 "noremap <esc> :noh<cr>
 imap jj <esc>
 
@@ -45,10 +45,6 @@ noremap T :tabp<CR>
 "Select all
 noremap <Leader>sa ggVG
 
-"Vmap for maintain Visual Mode after shifting > and <
-vnoremap < <gv
-vnoremap > >gv
-
 "Move visual block
 vnoremap J :m '>+1<CR>gv=g"v
 vnoremap K :m '<-2<CR>gv=gv
@@ -63,6 +59,19 @@ nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 
+" Next window
+nnoremap ]w <c-w>w
+
+"Increases/Decrease window width/height
+nnoremap <Space>v :vsplit<CR>
+nnoremap <Space>h :split<CR>
+nnoremap <Space> 4<c-w>>
+nnoremap <Tab> 4<c-w><
+nnoremap <CR> 4<c-w>>
+nnoremap <S-Up> 3<c-w>+
+nnoremap <S-Down> 3<c-w>-
+nnoremap <Space>f <c-w>o
+
 "Moving windows
 nnoremap <Tab>h <C-W>H
 nnoremap <Tab>l <C-W>L
@@ -70,22 +79,9 @@ nnoremap <Tab>j <C-W>J
 nnoremap <Tab>k <C-W>K
 nnoremap <Tab>t <C-W>T
 
-"Increases/Decrease window width/height
-nnoremap <Space>v :vsplit<CR>
-nnoremap <Space>h :split<CR>
-nnoremap <Space> 4<c-w>>
-nnoremap <Tab> 4<c-w><
-nnoremap <S-Up> 3<c-w>+
-nnoremap <S-Down> 3<c-w>-
-nnoremap <Space>f <c-w>o
-
 " Scroll with option k/j
 nnoremap ∆ 3<c-e>
 nnoremap ˚ 3<c-y>
-
-map <C-[> <c-w>=
-
-nmap <CR> o<Esc>k
 
 "Indent the content of the file
 nmap <Leader>f gg=G 
