@@ -49,6 +49,10 @@ noremap <Leader>sa ggVG
 vnoremap J :m '>+1<CR>gv=g"v
 vnoremap K :m '<-2<CR>gv=gv
 
+" Keep visual block selected, so that you could continue indenting
+vnoremap < <gv
+vnoremap > >gv
+
 "Edit vimrc and zshrc
 nnoremap ,ev :vsplit $MYVIMRC<cr>
 nnoremap ,er :vsplit $HOME/.zshrc<cr>
