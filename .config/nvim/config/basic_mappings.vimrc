@@ -1,16 +1,7 @@
-
 " ----------------------------------------------------------------------------
 " Key Mappings:Customized keys
 " ----------------------------------------------------------------------------
 
-"PRIMARY BUFFER
-noremap <leader>y "*y
-noremap <leader>p "*p
-"CLIPBOARD BUFFER
-noremap <leader>Y "+y
-noremap <leader>P "+p
-
-"noremap <esc> :noh<cr>
 imap jj <esc>
 
 "Close window
@@ -66,9 +57,11 @@ nnoremap <c-k> <c-w>k
 " Next window
 nnoremap ]w <c-w>w
 
-"Increases/Decrease window width/height
+"Split window
 nnoremap <Space>v :vsplit<CR>
 nnoremap <Space>h :split<CR>
+
+"Increases/Decrease window width/height
 nnoremap <Space> 4<c-w>>
 nnoremap <Tab> 4<c-w><
 nnoremap <CR> 4<c-w>>
@@ -84,12 +77,13 @@ nnoremap <Tab>k <C-W>K
 nnoremap <Tab>t <C-W>T
 
 " Scroll with option k/j
-nnoremap ∆ 3<c-e>
-nnoremap ˚ 3<c-y>
+" nnoremap ∆ 3<c-e>
+" nnoremap ˚ 3<c-y>
+nnoremap <C-j> 3<c-e>
+nnoremap <C-k> 3<c-y>
 
 "Indent the content of the file
-nmap <Leader>f gg=G 
-inoremap <Leader>f <Esc>gg=G 
+nnoremap <Leader>f gg=G 
 
-"Only current window
+"Keep open only the current window
 nnoremap<leader>o :only<CR>
