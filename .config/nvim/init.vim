@@ -5,12 +5,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-rhubarb'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
-Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'vim-scripts/DrawIt'
-Plug 'kristijanhusak/defx-git'
 Plug 'reedes/vim-pencil'
 Plug 'frazrepo/vim-rainbow'
 Plug 'dhruvasagar/vim-table-mode'
@@ -26,4 +21,5 @@ source $HOME/.config/nvim/config/terminall.vimrc
 source $HOME/.config/nvim/config/scala.vimrc
 source $HOME/.config/nvim/config/coc_snippets.vimrc
 
+let g:auto_save = 1
 au FocusLost * :wa

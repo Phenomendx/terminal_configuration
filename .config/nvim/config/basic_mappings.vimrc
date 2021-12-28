@@ -2,6 +2,7 @@
 " Key Mappings:Customized keys
 " ----------------------------------------------------------------------------
 
+"noremap <esc> :noh<cr>
 imap jj <esc>
 
 "Close window
@@ -40,13 +41,13 @@ noremap <Leader>sa ggVG
 vnoremap J :m '>+1<CR>gv=g"v
 vnoremap K :m '<-2<CR>gv=gv
 
-" Keep visual block selected, so that you could continue indenting
+"Keep visual block selected, so that you could continue indenting
 vnoremap < <gv
 vnoremap > >gv
 
 "Edit vimrc and zshrc
 nnoremap ,ev :vsplit $MYVIMRC<cr>
-nnoremap ,er :vsplit $HOME/.zshrc<cr>
+nnoremap ,ez :vsplit $HOME/.zshrc<cr>
 
 "Movement between windows
 nnoremap <c-h> <c-w>h
@@ -76,14 +77,11 @@ nnoremap <Tab>j <C-W>J
 nnoremap <Tab>k <C-W>K
 nnoremap <Tab>t <C-W>T
 
-" Scroll with option k/j
-" nnoremap ∆ 3<c-e>
-" nnoremap ˚ 3<c-y>
 nnoremap <C-j> 3<c-e>
 nnoremap <C-k> 3<c-y>
 
 "Indent the content of the file
 nnoremap <Leader>f gg=G 
 
-"Keep open only the current window
+"Only current window
 nnoremap<leader>o :only<CR>
