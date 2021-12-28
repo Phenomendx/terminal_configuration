@@ -18,8 +18,6 @@ source $HOME/.config/nvim/config/basic_mappings.vimrc
 source $HOME/.config/nvim/config/basic_options.vimrc
 source $HOME/.config/nvim/config/plugins.vimrc
 source $HOME/.config/nvim/config/terminall.vimrc
-source $HOME/.config/nvim/config/scala.vimrc
-source $HOME/.config/nvim/config/coc_snippets.vimrc
 
 let g:auto_save = 1
 au FocusLost * :wa
