@@ -1,9 +1,9 @@
 # customize search command within vim instance
-export FZF_DEFAULT_COMMAND='find .'
+export FZF_DEFAULT_COMMAND='find * -type f'
 # customize search command within shell instance
 export FZF_CTRL_T_COMMAND='find .'
+export FZF_DEFAULT_OPTS=' --border --height 20 --preview "cat {}" --preview-window right'
 
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 bindkey ';' fzf-file-widget
 
 alias gb="git branch"
