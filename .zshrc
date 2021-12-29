@@ -5,6 +5,11 @@ export FZF_CTRL_T_COMMAND='find .'
 export FZF_DEFAULT_OPTS=' --border --height 20 --preview "cat {}" --preview-window right'
 
 bindkey ';' fzf-file-widget
+bindkey "^j" backward-kill-word
+bindkey "^l" forward-word
+bindkey "^]" backward-char
+bindkey "^p" forward-char
+bindkey "^h" backward-word
 
 alias gb="git branch"
 alias gc="git commit -m"
