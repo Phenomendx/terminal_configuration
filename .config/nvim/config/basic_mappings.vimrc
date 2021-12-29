@@ -46,8 +46,10 @@ vnoremap < <gv
 vnoremap > >gv
 
 "Edit vimrc and zshrc
-nnoremap ,ev :vsplit $MYVIMRC<cr>
-nnoremap ,ez :vsplit $HOME/.zshrc<cr>
+nnoremap <leader>ez :vsplit $HOME/.zshrc<cr>
+nnoremap <leader>sz :source $HOME/.zshrc<cr>
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 "Movement between windows
 nnoremap <c-h> <c-w>h
